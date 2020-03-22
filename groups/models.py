@@ -2,9 +2,17 @@ from django.db import models
 from django.utils.crypto import get_random_string
 
 
+class GroupManager(models.Manager):
+    def createGroup(self, name, token):
+        group = self.create(name=name, token=Group.generateToken())
+        return group
+
+
 class Group(models.Model):
     name = models.CharField(max_length=32)
     token = models.CharField(max_length=32)
+
+    objects = GroupManager()
 
     def __str__(self):
         return self.name
