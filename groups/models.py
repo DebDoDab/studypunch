@@ -6,6 +6,9 @@ class Group(models.Model):
     name = models.CharField(max_length=32)
     token = models.CharField(max_length=32)
 
+    def __str__(self):
+        return self.name
+
     @staticmethod
     def createAdminGroup():
         token = Group.generateToken()
@@ -21,3 +24,6 @@ class Group(models.Model):
         while Group.objects.filter(token=token).exists():
             token = get_random_string(32)
         return token
+
+    def updateToken(self):
+        self.token = self.generateToken()

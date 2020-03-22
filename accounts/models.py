@@ -27,4 +27,3 @@ class User(AbstractUser):
 
     REQUIRED_FIELDS = ['group', 'email']
     objects = CustomUserManager()
-

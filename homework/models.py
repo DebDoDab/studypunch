@@ -7,5 +7,9 @@ class Homework(models.Model):
     isImportant = models.BooleanField()
     deadline = models.DateField()
     # TODO add subject
+    name = models.CharField(max_length=32)
     description = models.CharField(max_length=512)
     # TODO add comments
+
+    def __str__(self):
+        return self.name
