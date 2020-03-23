@@ -1,0 +1,36 @@
+<!-- Sticky header -->
+<!-- <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+  <div class="container-fluid">
+    <div class="navbar-name">
+      <h1>Thats what she said</h1>
+    </div>
+    <a class="navbar-user" href="#">
+      Vadim Klishevich
+    </a>
+  </div>
+</nav> -->
+
+<nav ngbNav #nav="ngbNav" class="nav-tabs sticky-top">
+
+  <ng-container ngbNavItem>
+    <a ngbNavLink routerLink="">Icon</a>
+  </ng-container>
+  <ng-container ngbNavItem>
+    <a ngbNavLink routerLink="/homework">Homework</a>
+  </ng-container>
+  <ng-container ngbNavItem>
+    <a ngbNavLink routerLink="">Group</a>
+  </ng-container>
+  <ng-container ngbNavItem>
+    <a ngbNavLink routerLink="/login">Vadim Klishevich</a>
+    <a ngbNavLink routerLink="/login">Icon2</a>
+  </ng-container>
+
+</nav>
+
+<div class="">
+  <p>Opa</p>
+  <hr>
+</div>
+
+<router-outlet></router-outlet>

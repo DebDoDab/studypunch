@@ -1,0 +1,87 @@
+<!-- 4 columns -->
+<div class="container-fluid padding">
+  <div class="row text-center padding">
+
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <h2>{{firstColumn.title}}</h2>
+      <hr>
+      <ul *ngFor="let homework of firstColumn.data">
+        <li>
+          <div class="homework">
+            <div class="name">
+              {{homework.name}}
+            </div>
+            <div class="deadline">
+              {{homework.deadline}}
+            </div>
+            <div class="subject">
+              {{homework.subject}}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <h2>{{secondColumn.title}}</h2>
+      <hr>
+      <ul *ngFor="let homework of secondColumn.data">
+        <li>
+          <div class="homework">
+            <div class="name">
+              {{homework.name}}
+            </div>
+            <div class="deadline">
+              {{homework.deadline}}
+            </div>
+            <div class="subject">
+              {{homework.subject}}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <h2>{{thirdColumn.title}}</h2>
+      <hr>
+      <ul *ngFor="let homework of thirdColumn.data">
+        <li>
+          <div class="homework">
+            <div class="name">
+              {{homework.name}}
+            </div>
+            <div class="deadline">
+              {{homework.deadline}}
+            </div>
+            <div class="subject">
+              {{homework.subject}}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <h2>{{forthColumn.title}}</h2>
+      <hr>
+      <ul *ngFor="let homework of forthColumn.data">
+        <li>
+          <div class="homework">
+            <div class="name">
+              {{homework.name}}
+            </div>
+            <div class="deadline">
+              {{homework.deadline}}
+            </div>
+            <div class="subject">
+              {{homework.subject}}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <hr class="my-4">
+</div>
