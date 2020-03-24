@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 
   response: any;
   headers: any;
+  token: string;
   // config: any;
   constructor(private api: ApiService) { }
 
@@ -19,19 +20,23 @@ export class LoginComponent implements OnInit {
 
   checkLogin() {
     // this.api.checkLogin().subscribe(x => this.response = x);
-    this.api.checkLogin()
-      .subscribe(resp => {
-        console.log(resp.headers);
-      // display its headers
-      const keys = resp.headers.keys();
-      this.headers = keys.map(key =>
-        `${key}: ${resp.headers.get(key)}`);
-    });
-    console.log(this.headers);
+    // this.api.checkLogin()
+    //   .subscribe(resp => {
+    //     console.log(resp.headers);
+    //   // display its headers
+    //   const keys = resp.headers.keys();
+    //   this.headers = keys.map(key =>
+    //     `${key}: ${resp.headers.get(key)}`);
+    // });
+    // console.log(this.headers);
   };
 
+  getCookies() {
+    console.log(this.api.checkCookies());
+  }
+
   login() {
-    this.api.login().subscribe(x => this.response = x);
+    this.api.login();
   };
 
 }

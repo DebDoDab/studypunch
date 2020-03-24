@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Homework, ColumnElement } from './columnElement';
 
 @Component({
   selector: 'app-homework',
@@ -7,14 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeworkComponent implements OnInit {
 
-  firstColumn = {'title': '< week', 'data': [{'name':'name', 'deadline':12, 'subject':'Math'}]};
+  firstColumn = {'title': '< week', 'data': []};
   secondColumn = {'title': '< 2 weeks', 'data': []};
   thirdColumn = {'title': 'longterm', 'data': []};
   forthColumn = {'title': 'notes', 'data': []};
 
-  constructor() { }
+  constructor(private api : ApiService) { }
 
   ngOnInit(): void {
+    this.api.getHomework().subscribe(x => this.divide(x['results']));
+  }
+
+  divide(x: JSON): void {
+    let a: Object = x;
+    this.firstColumn.data = <Array<Homework>>a;
   }
 
 }

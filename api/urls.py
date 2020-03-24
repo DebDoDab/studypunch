@@ -13,5 +13,8 @@ router.register(r'subjects', viewset=SubjectViewSet)
 
 urlpatterns = [
     path(r'', include(router.urls)),
-    path('auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    # path('auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
