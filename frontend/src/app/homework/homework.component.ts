@@ -19,19 +19,22 @@ export class HomeworkComponent implements OnInit {
   constructor(private api : ApiService) { }
 
   ngOnInit(): void {
-    // this.api.getHomework().subscribe(x => this.divide(x['results']));
+    this.api.getHomework().then(x => this.divide(x['results']));
   }
 
   divide(json: Object): void {
     let result = <Array<Homework>>json;
     let today = new Date();
-    console.log(result, today);
+    let week = new Date();
+    week.setDate(today.getDate() + 7);
+    let twoWeeks = new Date();
+    twoWeeks.setDate(week.getDate() + 7);
     for (let homework of result) {
       if (homework.deadline < today.toISOString().split('T')[0]) {
         this.forthColumn.data.push(homework);
-      } else if (homework.deadline < new Date(today.getDate() + 7).toISOString().split('T')[0]) {
+      } else if (homework.deadline < week.toISOString().split('T')[0]) {
         this.firstColumn.data.push(homework);
-      } else if (homework.deadline < new Date(today.getDate() + 7).toISOString().split('T')[0]) {
+      } else if (homework.deadline < twoWeeks.toISOString().split('T')[0]) {
         this.secondColumn.data.push(homework);
       } else {
         this.thirdColumn.data.push(homework);

@@ -100,33 +100,23 @@ export class ApiService {
     }
   }
 
-  updateCookies(target: Function) {
-    this.setJWT();
-    return target();
-  }
-
-  @this.updateCookies
   async getCurrentUser(): Promise<any> {
+    await this.setJWT();
     return this.http
       .get(this.baseurl + 'auth/users/me/', {headers: this.httpHeaders}).toPromise();
   }
 
-  @this.updateCookies
   async getHomework(): Promise<any> {
+    await this.setJWT();
     return this.http
-      .get(this.baseurl + 'homework/', {headers: this.httpHeaders});
+      .get(this.baseurl + 'homework/', {headers: this.httpHeaders}).toPromise();
   }
 
-  @this.updateCookies
   async getGroup(): Promise<any> {
-
+    await this.setJWT();
+    return this.http
+      .get(this.baseurl + 'groups/', {headers: this.httpHeaders}).toPromise();
   }
-
-  // getGroup(): Observable<any> {
-  //   this.setAuthToken();
-  //   return this.http
-  //     .get(this.baseurl, {headers: this.httpHeaders});
-  // }
 
 
 
