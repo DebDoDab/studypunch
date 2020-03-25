@@ -13,23 +13,23 @@
 <nav ngbNav #nav="ngbNav" class="nav-tabs sticky-top">
 
   <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="">Icon</a>
+    <a ngbNavLink routerLink=""><img src="../favicon.ico" width=100></a>
   </ng-container>
   <ng-container ngbNavItem>
     <a ngbNavLink routerLink="/homework">Homework</a>
   </ng-container>
   <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="">Group</a>
+    <a ngbNavLink routerLink="/groups">Group</a>
   </ng-container>
   <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="/login">Vadim Klishevich</a>
+    <a ngbNavLink routerLink="/login">{{user.username}}</a>
     <a ngbNavLink routerLink="/login">Icon2</a>
   </ng-container>
 
 </nav>
 
 <div class="">
-  <p>Opa</p>
+  <h1>{{user.group}} {{title}}</h1>
   <hr>
 </div>
 

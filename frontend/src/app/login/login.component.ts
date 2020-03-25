@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../api/api.service';
 
 @Component({
   selector: 'app-login',
@@ -18,25 +18,10 @@ export class LoginComponent implements OnInit {
 
   }
 
-  checkLogin() {
-    // this.api.checkLogin().subscribe(x => this.response = x);
-    // this.api.checkLogin()
-    //   .subscribe(resp => {
-    //     console.log(resp.headers);
-    //   // display its headers
-    //   const keys = resp.headers.keys();
-    //   this.headers = keys.map(key =>
-    //     `${key}: ${resp.headers.get(key)}`);
-    // });
-    // console.log(this.headers);
-  };
-
-  getCookies() {
-    console.log(this.api.checkCookies());
-  }
-
   login() {
+    console.log("DSA");
     this.api.login();
+    console.log("ASD");
   };
 
 }
