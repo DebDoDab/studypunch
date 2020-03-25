@@ -21,7 +21,7 @@ class CustomUserManager(UserManager):
 
 
 class User(AbstractUser):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='users')
     doneHomework = models.ManyToManyField(Homework)
 
     REQUIRED_FIELDS = ['group', 'email']

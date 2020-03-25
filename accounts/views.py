@@ -8,3 +8,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    def get_queryset(self):
+        group_id = self.request.user.group_id
+        queryset = User.objects.filter(group_id=group_id)
+        return queryset
