@@ -4,8 +4,6 @@ import { Observable, Subscription } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
-import { User } from '../interfaces/user';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -88,15 +86,21 @@ export class ApiService {
         return;
       }).catch(() => {
         this.redirectToLogin();
+        throw new Error("Need to authenticate");
       });
   }
 
   async login(): Promise<any> {
     try {
-      await this.createJWT();
+      var x = await this.createJWT();
+      console.log(x);
     } catch {
       console.log("@");
-      return;
+      return new Observable((observer) => {
+        console.log("string returned");
+        observer.next("Login Error");
+        observer.complete();
+      }).toPromise();
     }
   }
 

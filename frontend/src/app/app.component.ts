@@ -11,19 +11,14 @@ import { User } from './interfaces/user';
 })
 export class AppComponent implements OnInit {
   title = 'Study Punch';
-  user: User = {
-    group: -1,
-    email: "",
-    id: -1,
-    username: "Unlogined",
-  };
+  user = new User;
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.api.getCurrentUser().then(user => {
       this.user = user;
-    });
+    }).catch(err => {});
     console.log(this.user);
   }
 }

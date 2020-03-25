@@ -10,7 +10,7 @@
   </div>
 </nav> -->
 
-<nav ngbNav #nav="ngbNav" class="nav-tabs sticky-top">
+<nav ngbNav #nav="ngbNav" class="nav-pills nav-fill sticky-top">
 
   <ng-container ngbNavItem>
     <a ngbNavLink routerLink=""><img src="../favicon.ico" width=100></a>
@@ -19,17 +19,21 @@
     <a ngbNavLink routerLink="/homework">Homework</a>
   </ng-container>
   <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="/groups">Group</a>
+    <a ngbNavLink routerLink="/group">Group</a>
   </ng-container>
   <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="/login">{{user.username}}</a>
-    <a ngbNavLink routerLink="/login">Icon2</a>
+    <a ngbNavLink routerLink="/login">{{user.username}} Icon2</a>
   </ng-container>
 
 </nav>
 
+<hr>
+
 <div class="">
-  <h1>{{user.group}} {{title}}</h1>
+  <h1>
+    {{user.group}} {{title}}
+    <button type="button" class="btn btn-success" align="center">Add homework</button>
+  </h1>
   <hr>
 </div>
 

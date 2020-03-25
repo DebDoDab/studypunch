@@ -11,15 +11,17 @@ import { Homework } from '../interfaces/homework';
 })
 export class HomeworkComponent implements OnInit {
 
-  firstColumn: Column = {'title': '< week', 'data': []};
-  secondColumn: Column = {'title': '< 2 weeks', 'data': []};
-  thirdColumn: Column = {'title': 'longterm', 'data': []};
-  forthColumn: Column = {'title': 'expired', 'data': []};
+  homework: Array<Column> = [
+    {'title': '< week', 'data': new Array<Homework>()},
+    {'title': '< 2 weeks', 'data': new Array<Homework>()},
+    {'title': 'longterm', 'data': new Array<Homework>()},
+    {'title': 'expired', 'data': new Array<Homework>()},
+  ]
 
   constructor(private api : ApiService) { }
 
   ngOnInit(): void {
-    this.api.getHomework().then(x => this.divide(x['results']));
+    this.api.getHomework().then(x => this.divide(x['results'])).catch(err => {});
   }
 
   divide(json: Object): void {
@@ -31,13 +33,13 @@ export class HomeworkComponent implements OnInit {
     twoWeeks.setDate(week.getDate() + 7);
     for (let homework of result) {
       if (homework.deadline < today.toISOString().split('T')[0]) {
-        this.forthColumn.data.push(homework);
+        this.homework[3].data.push(homework);
       } else if (homework.deadline < week.toISOString().split('T')[0]) {
-        this.firstColumn.data.push(homework);
+        this.homework[0].data.push(homework);
       } else if (homework.deadline < twoWeeks.toISOString().split('T')[0]) {
-        this.secondColumn.data.push(homework);
+        this.homework[1].data.push(homework);
       } else {
-        this.thirdColumn.data.push(homework);
+        this.homework[2].data.push(homework);
       }
     }
   }

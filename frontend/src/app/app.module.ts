@@ -8,14 +8,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { LoginComponent } from './login/login.component';
 import { HomeworkComponent } from './homework/homework.component';
-import { GroupsComponent } from './groups/groups.component';
+import { GroupComponent } from './group/group.component';
+import { SubjectsComponent } from './subjects/subjects.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeworkComponent,
-    GroupsComponent,
+    GroupComponent,
+    SubjectsComponent,
   ],
   imports: [
     BrowserModule,

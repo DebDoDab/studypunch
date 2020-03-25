@@ -1,10 +1,13 @@
 <p>login works!</p>
+
+<ng-template [ngIf]="alert.state" >
+  <ngb-alert [type]=alert.type (close)=alert.clear()>
+    {{alert.message}}
+  </ngb-alert>
+</ng-template>
+
 <button type="button" (click)="login()">Login</button>
 
 <ul *ngFor x of response>
   <li>x</li>
 </ul>
-
-<div>
-  {{response}}
-</div>

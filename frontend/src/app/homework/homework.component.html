@@ -2,82 +2,24 @@
 <div class="container-fluid padding">
   <div class="row text-center padding">
 
-    <div class="col-xs-3 col-sm-3 col-md-3">
-      <h2>{{firstColumn.title}}</h2>
+    <div class="col-xs-6 col-sm-6 col-md-3" *ngFor="let column of homework">
+      <h2>{{column.title}}</h2>
       <hr>
-      <ul *ngFor="let homework of firstColumn.data">
-        <li>
-          <div class="homework">
+      <ul class="list-group">
+        <li *ngFor="let homework of column.data" class="homework list-group-item">
+          <a [href]="homework.url">
             <div class="name">
               {{homework.name}}
             </div>
             <div class="deadline">
               {{homework.deadline}}
             </div>
-            <div class="subject">
+          </a>
+          <button type="button" class="btn btn-success">
+            <a class="subject" href="subjects?id={{homework.subject}}">
               {{homework.subject}}
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-xs-3 col-sm-3 col-md-3">
-      <h2>{{secondColumn.title}}</h2>
-      <hr>
-      <ul *ngFor="let homework of secondColumn.data">
-        <li>
-          <div class="homework">
-            <div class="name">
-              {{homework.name}}
-            </div>
-            <div class="deadline">
-              {{homework.deadline}}
-            </div>
-            <div class="subject">
-              {{homework.subject}}
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-xs-3 col-sm-3 col-md-3">
-      <h2>{{thirdColumn.title}}</h2>
-      <hr>
-      <ul *ngFor="let homework of thirdColumn.data">
-        <li>
-          <div class="homework">
-            <div class="name">
-              {{homework.name}}
-            </div>
-            <div class="deadline">
-              {{homework.deadline}}
-            </div>
-            <div class="subject">
-              {{homework.subject}}
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-xs-3 col-sm-3 col-md-3">
-      <h2>{{forthColumn.title}}</h2>
-      <hr>
-      <ul *ngFor="let homework of forthColumn.data">
-        <li>
-          <div class="homework">
-            <div class="name">
-              {{homework.name}}
-            </div>
-            <div class="deadline">
-              {{homework.deadline}}
-            </div>
-            <div class="subject">
-              {{homework.subject}}
-            </div>
-          </div>
+            </a>
+          </button>
         </li>
       </ul>
     </div>

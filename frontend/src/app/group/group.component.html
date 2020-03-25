@@ -1,0 +1,21 @@
+<!-- 4 columns -->
+<div class="container-fluid padding">
+  <div class="row text-center padding">
+
+      <div class="col-xs-3 col-sm-3 col-md-3" *ngFor="let column of users">
+        <ul class="list-group">
+          <li *ngFor="let user of column" class="user list-group-item">
+            <a [href]=user.url>
+              <div class="user">
+                <div class="username">
+                  {{user.username}}
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+  </div>
+  <hr class="my-4">
+</div>

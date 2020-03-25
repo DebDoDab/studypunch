@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api/api.service';
 
+import { Alert } from '../interfaces/alert';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +13,8 @@ export class LoginComponent implements OnInit {
   response: any;
   headers: any;
   token: string;
-  // config: any;
+  alert: Alert = new Alert();
+
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
@@ -20,7 +23,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log("DSA");
-    this.api.login();
+    this.api.login().then(result => {
+      console.log("@@@@@@@@@@@@@");
+      console.log(result, "1");
+      this.alert.set(result);
+      console.log(this.alert, "2");
+    }).catch(err => {});
     console.log("ASD");
   };
 
