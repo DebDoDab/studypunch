@@ -16,4 +16,8 @@ export class Homework {
     this.name = "undefined";
     this.descriprion = "";
   }
+
+  getDeadline(): string {
+    return this.deadline.toString().split(" ").slice(1, 2).join(" ");
+  }
 }

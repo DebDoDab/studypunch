@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+
+import { User } from '../models/user';
+import { Subject } from '../models/subject';
+import { Homework } from '../models/homework';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +21,10 @@ export class ApiService {
     {'Content-Type': 'application/json'},
   );
 
-  constructor(private http: HttpClient, private cookies: CookieService, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private cookies: CookieService,
+    private router: Router) {}
 
   setHeadersAuth(): void {
     if (this.cookies.check('access_token')) {
@@ -39,14 +46,6 @@ export class ApiService {
 
   redirectToLogin(): void {
     this.router.navigateByUrl('login');
-  }
-
-  async errorHandle(response: Promise<any>): Promise<any> {
-    return response
-      .catch(error => {
-        console.log("Error occured\n", error['status']);
-        return new Promise(() => {throw new Error("Error occured");});
-      });
   }
 
   async createJWT(): Promise<any> {
@@ -104,26 +103,57 @@ export class ApiService {
     }
   }
 
-  async getCurrentUser(): Promise<any> {
+  async getCurrentUser(): Promise<User> {
     await this.setJWT();
+    let user = await this.http
+      .get(this.baseurl + "auth/users/me/", {headers: this.httpHeaders})
+      .toPromise();
+    console.log(user);
     return this.http
-      .get(this.baseurl + 'auth/users/me/', {headers: this.httpHeaders}).toPromise();
+      .get(this.baseurl + 'users/' + user['id'] + '/', {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => {
+        return <User>resp;
+      });
   }
 
-  async getHomework(): Promise<any> {
+  async getHomework(): Promise<Array<Homework>> {
     await this.setJWT();
     return this.http
-      .get(this.baseurl + 'homework/', {headers: this.httpHeaders}).toPromise();
+      .get(this.baseurl + "homework/", {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => {
+        return <Array<Homework>>resp['results'];
+      });
   }
 
-  async getGroup(): Promise<any> {
+  async getUsers(): Promise<Array<User>> {
     await this.setJWT();
     return this.http
-      .get(this.baseurl + 'groups/', {headers: this.httpHeaders}).toPromise();
+      .get(this.baseurl + "users/", {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => {
+        return <Array<User>>resp['results'];
+      });
   }
 
+  async getSubjects(): Promise<Array<Subject>> {
+    await this.setJWT();
+    return this.http
+      .get(this.baseurl + 'subjects/', {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => {
+        return <Array<Subject>>resp['results'];
+      });
+  }
 
-
-
-
+  async getSubjectHomework(subjectId: number): Promise<Array<Homework>> {
+    await this.setJWT();
+    return this.http
+      .get(this.baseurl + 'homework/?subject_id' + subjectId, {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => {
+        return <Array<Homework>>resp['results'];
+      });
+  }
 }

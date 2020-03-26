@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api/api.service';
 
-import { User } from './interfaces/user';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +11,14 @@ import { User } from './interfaces/user';
 })
 export class AppComponent implements OnInit {
   title = 'Study Punch';
-  user = new User;
+  user = new User();
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.api.getCurrentUser().then(user => {
+      console.log(user);
       this.user = user;
     }).catch(err => {});
-    console.log(this.user);
   }
 }

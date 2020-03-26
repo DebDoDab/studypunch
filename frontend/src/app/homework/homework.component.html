@@ -3,27 +3,28 @@
   <div class="row text-center padding">
 
     <div class="col-sm-6 col-md-3" *ngFor="let column of homework">
-      <h2>{{column.title}}</h2>
-      <hr>
-      <ul class="list-group">
-        <li *ngFor="let homework of column.data" class="homework list-group-item">
-          <a [href]="homework.url">
-            <div class="name">
-              {{homework.name}}
-            </div>
-            <div class="deadline">
-              {{homework.deadline}}
-            </div>
-          </a>
-          <button type="button" class="btn btn-success">
-            <a class="subject" href="subjects?id={{homework.subject}}">
-              {{homework.subject}}
+      <div class="card card-body bg-light">
+        <h2 class="card-title">{{column.title}}</h2>
+        <hr>
+        <ul class="list-group">
+          <li *ngFor="let homework of column.data" class="homework list-group-item bg-primary">
+            <a [href]="homework.url" class="text-white">
+              <div class="name card-text">
+                {{homework.name}}
+              </div>
+              <div class="deadline card-text">
+                {{homework.deadline | date:"MMM dd"}}
+              </div>
             </a>
-          </button>
-        </li>
-      </ul>
+            <a class="subject card-text" href="subjects?id={{homework.subject.id}}">
+              <div class="btn btn-success">
+                  {{homework.subject.name}}
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
   </div>
-  <hr class="my-4">
 </div>

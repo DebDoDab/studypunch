@@ -5,11 +5,9 @@
       <div class="col-sm-6 col-md-3" *ngFor="let column of subjects">
         <ul class="list-group">
           <li *ngFor="let subject of column" class="subject list-group-item">
-            <a href="?id={{subject.id}}">
-              <div class="user">
-                <div class="username">
-                  {{user.username}}
-                </div>
+            <a href="subjects?id={{subject.id}}">
+              <div class="name">
+                  {{subject.name}}
               </div>
             </a>
           </li>
