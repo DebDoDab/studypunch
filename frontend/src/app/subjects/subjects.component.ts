@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { ApiService } from '../api/api.service';
 import { CurrentUserService } from '../shared/services/current-user.service';
 import { Subject } from '../models/subject';
@@ -13,7 +13,7 @@ export class SubjectsComponent implements OnInit {
   subjects: Array<Array<Subject>> = new Array(4).fill(false).map(() => new Array());
   user: CurrentUserService;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private router: Router) {
     this.user = new CurrentUserService(api);
   }
 
@@ -29,6 +29,10 @@ export class SubjectsComponent implements OnInit {
       this.subjects[index % 4].push(subject);
       index++;
     }
+  }
+
+  btnClick(subject: Subject): void {
+    this.router.navigateByUrl("homework?id=" + subject.id);
   }
 
 }

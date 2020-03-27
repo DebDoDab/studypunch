@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { ApiService } from '../api/api.service';
 import { CurrentUserService } from '../shared/services/current-user.service';
+
 @Component({
   selector: 'app-group',
   templateUrl: './group.component.html',
@@ -14,7 +15,7 @@ export class GroupComponent implements OnInit {
     return new Array();
   });
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private router: Router) {
     this.user = new CurrentUserService(this.api);
   }
 
@@ -30,6 +31,10 @@ export class GroupComponent implements OnInit {
       this.users[index % 4].push(user);
       index++;
     }
+  }
+
+  btnClick(user: User): void {
+    this.router.navigateByUrl("");
   }
 
 }

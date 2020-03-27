@@ -2,7 +2,7 @@
   <div class="text-center text-color-navy">
     <h1>
       <span class="mx-5">{{user.getCurrentUser().group.name}}'s Subjects</span>
-      <button type="button" class="btn btn-info button-secondary text-color-navy shadow-lg px-5 mx-5">Add subject</button>
+      <button type="button" class="btn button-secondary text-color-navy shadow-lg px-5 mx-5">Add subject</button>
     </h1>
   </div>
 </div>
@@ -13,12 +13,10 @@
 
       <div class="col-sm-6 col-md-3" *ngFor="let column of subjects">
         <ul class="list-group">
-          <li *ngFor="let subject of column" class="subject list-group-item button-primary shadow p-3 mb-5">
-            <a href="homework?id={{subject.id}}">
-              <div class="name text-white">
-                  {{subject.name}}
-              </div>
-            </a>
+          <li *ngFor="let subject of column" class="subject list-group-item p-0 m-3 shadow">
+            <div class="name text-white btn button-primary w-100 py-3 m-0" (click)="btnClick(subject)">
+                {{subject.name}}
+            </div>
           </li>
         </ul>
       </div>

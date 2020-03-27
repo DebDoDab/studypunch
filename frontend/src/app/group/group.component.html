@@ -12,14 +12,12 @@
 
       <div class="col-sm-6 col-md-3" *ngFor="let column of users">
         <ul class="list-group">
-          <li *ngFor="let user of column" class="user list-group-item button-primary shadow p-3 mb-5">
-            <a [href]=user.url>
-              <div class="user text-white">
-                <div class="username">
-                  {{user.username}}
-                </div>
+          <li *ngFor="let user of column" class="user list-group-item shadow p-0 m-3">
+            <!-- <a [href]=user.url> -->
+              <div class="user btn button-primary text-white w-100 py-3 m-0" (click)="btnClick(user)">
+                {{user.username}}
               </div>
-            </a>
+            <!-- </a> -->
           </li>
         </ul>
       </div>

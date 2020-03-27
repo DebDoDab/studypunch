@@ -21,10 +21,32 @@
   border-color: #78cafc;
 }
 
+.button-secondary:focus {
+  background-color: #b3e6ff;
+  border-color: #b3e6ff;
+}
+
+.button-secondary:active {
+  background-color: #4dc3ff;
+  border-color: #4dc3ff;
+}
+
 .text-color-navy {
   color: #00458b;
 }
 
 .text-color-navy:hover {
   color: #00458b;
+}
+
+.text-color-navy:focus {
+  color: #00458b;
+}
+
+.text-color-navy:active {
+  color: #00458b;
+}
+
+.background-color-white {
+  background-color: #fffd!important;
 }
