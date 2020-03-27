@@ -1,26 +1,33 @@
+<div class="p-3">
+  <div class="text-center text-color-navy">
+    <h1>
+      <span class="mx-5">{{user.getCurrentUser().group.name}}'s Homework</span>
+      <button type="button" class="btn btn-info button-secondary text-color-navy px-5 mx-5">Add homework</button>
+    </h1>
+  </div>
+</div>
+<hr>
 <!-- 4 columns -->
 <div class="container-fluid padding">
   <div class="row text-center padding">
 
-    <div class="col-sm-6 col-md-3" *ngFor="let column of homework">
-      <div class="card card-body bg-light">
-        <h2 class="card-title">{{column.title}}</h2>
+    <div class="col-sm-6 col-md-6 col-lg-3" *ngFor="let column of homework">
+      <div class="">
+        <h2 class="text-color-navy">{{column.title}}</h2>
         <hr>
         <ul class="list-group">
-          <li *ngFor="let homework of column.data" class="homework list-group-item bg-primary">
+          <li *ngFor="let homework of column.data" class="homework list-group-item button-primary shadow-lg">
             <a [href]="homework.url" class="text-white">
-              <div class="name card-text">
+              <div class="name font-weight-bold">
                 {{homework.name}}
               </div>
-              <div class="deadline card-text">
+              <div class="deadline">
                 {{homework.deadline | date:"MMM dd"}}
               </div>
             </a>
-            <a class="subject card-text" href="subjects?id={{homework.subject.id}}">
-              <div class="btn btn-success">
-                  {{homework.subject.name}}
-              </div>
-            </a>
+            <button class="btn btn-success" (click)="btnClick(homework.subject)">
+                {{homework.subject.name}}
+            </button>
           </li>
         </ul>
       </div>

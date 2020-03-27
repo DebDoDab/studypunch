@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api/api.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { Alert } from '../interfaces/alert';
+import { Alert } from '../models/alert';
+import { CurrentUserService } from '../shared/services/current-user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +11,30 @@ import { Alert } from '../interfaces/alert';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  user: CurrentUserService;
   response: any;
   headers: any;
   token: string;
   alert: Alert = new Alert();
+  loginData = new FormGroup({
+    username: new FormControl(""),
+    password: new FormControl(""),
+  });
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {
+    this.user = new CurrentUserService(api);
+  }
 
   ngOnInit(): void {
 
   }
 
   login() {
-    console.log("DSA");
-    this.api.login().then(result => {
-      console.log("@@@@@@@@@@@@@");
-      console.log(result, "1");
-      this.alert.set(result);
-      console.log(this.alert, "2");
+    console.log(this.loginData.value);
+    this.api.login(this.loginData.value).then(result => {
+      console.log("Login Done", result);
+      this.alert.set(result.message, result.type);
     }).catch(err => {});
-    console.log("ASD");
   };
 
 }

@@ -13,10 +13,6 @@ import { Homework } from '../models/homework';
 })
 export class ApiService {
   baseurl = "http://localhost:8000/api/";
-  logindata = {
-    "username": "Vadeb",
-    "password": "qwe",
-  };
   httpHeaders = new HttpHeaders(
     {'Content-Type': 'application/json'},
   );
@@ -48,12 +44,12 @@ export class ApiService {
     this.router.navigateByUrl('login');
   }
 
-  async createJWT(): Promise<any> {
+  async createJWT(loginData): Promise<any> {
     return this.http
       .post(this.baseurl + 'auth/jwt/create/',
-        this.logindata,
-        {headers: this.httpHeaders, observe: 'body'}
-    ).toPromise()
+        loginData,
+        {headers: this.httpHeaders, observe: 'body'})
+      .toPromise()
       .then(response => {
         this.setCookiesAuth(<JSON>response);
       });
@@ -89,15 +85,18 @@ export class ApiService {
       });
   }
 
-  async login(): Promise<any> {
+  async login(loginData): Promise<any> {
     try {
-      var x = await this.createJWT();
+      var x = await this.createJWT(loginData);
       console.log(x);
+      return new Observable((observer) => {
+        observer.next({message: "You succesfully logined", type: "success"});
+        observer.complete();
+      }).toPromise();
     } catch {
       console.log("@");
       return new Observable((observer) => {
-        console.log("string returned");
-        observer.next("Login Error");
+        observer.next({message: "Login error", type: "danger"});
         observer.complete();
       }).toPromise();
     }
@@ -117,10 +116,14 @@ export class ApiService {
       });
   }
 
-  async getHomework(): Promise<Array<Homework>> {
+  async getHomework(subject = undefined): Promise<Array<Homework>> {
     await this.setJWT();
+    let query = ""
+    if (subject) {
+      query = "?subject_id=" + subject;
+    }
     return this.http
-      .get(this.baseurl + "homework/", {headers: this.httpHeaders})
+      .get(this.baseurl + "homework/" + query, {headers: this.httpHeaders})
       .toPromise()
       .then(resp => {
         return <Array<Homework>>resp['results'];

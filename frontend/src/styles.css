@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+.button-primary {
+  background-color: #68cec7;
+  border-color: #68cec7;
+  transition: background-color 0.5s, border-color 0.5s;
+}
+
+.button-primary:hover {
+  background-color: #73e7d3;
+  border-color: #73e7d3;
+}
+
+.button-secondary {
+  background-color: #99ddff;
+  border-color: #99ddff;
+  transition: background-color 0.5s, border-color 0.5s;
+}
+
+.button-secondary:hover {
+  background-color: #78cafc;
+  border-color: #78cafc;
+}
+
+.text-color-navy {
+  color: #00458b;
+}
+
+.text-color-navy:hover {
+  color: #00458b;
+}

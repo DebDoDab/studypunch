@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api/api.service';
+import { CurrentUserService } from './shared/services/current-user.service';
 
 import { User } from './models/user';
 
@@ -11,14 +12,16 @@ import { User } from './models/user';
 })
 export class AppComponent implements OnInit {
   title = 'Study Punch';
-  user = new User();
+  user: CurrentUserService;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {
+    this.user = new CurrentUserService(this.api);
+    this.user.setCurrentUser();
+  }
 
   ngOnInit() {
-    this.api.getCurrentUser().then(user => {
-      console.log(user);
-      this.user = user;
-    }).catch(err => {});
+    console.log(CurrentUserService.user.username);
   }
+
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApiService } from '../api/api.service';
-
+import { CurrentUserService } from '../shared/services/current-user.service';
 import { Subject } from '../models/subject';
 
 @Component({
@@ -11,8 +11,11 @@ import { Subject } from '../models/subject';
 })
 export class SubjectsComponent implements OnInit {
   subjects: Array<Array<Subject>> = new Array(4).fill(false).map(() => new Array());
+  user: CurrentUserService;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {
+    this.user = new CurrentUserService(api);
+  }
 
   ngOnInit(): void {
     this.api.getSubjects().then(resp => {

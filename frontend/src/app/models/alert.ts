@@ -9,9 +9,10 @@ export class Alert {
     this.state = false;
   }
 
-  set(message: string) {
+  set(message: string, type: string) {
     this.message = message;
     this.state = !!message;
+    this.type = type;
   }
 
   clear() {

@@ -1,12 +1,20 @@
+<div class="p-3">
+  <div class="text-center text-color-navy">
+    <h1>
+      <span class="mx-5">{{user.getCurrentUser().group.name}}'s Users</span>
+    </h1>
+  </div>
+</div>
+<hr>
 <!-- 4 columns -->
 <div class="container-fluid padding">
   <div class="row text-center padding">
 
       <div class="col-sm-6 col-md-3" *ngFor="let column of users">
         <ul class="list-group">
-          <li *ngFor="let user of column" class="user list-group-item">
+          <li *ngFor="let user of column" class="user list-group-item button-primary shadow p-3 mb-5">
             <a [href]=user.url>
-              <div class="user">
+              <div class="user text-white">
                 <div class="username">
                   {{user.username}}
                 </div>
@@ -17,5 +25,4 @@
       </div>
 
   </div>
-  <hr class="my-4">
 </div>

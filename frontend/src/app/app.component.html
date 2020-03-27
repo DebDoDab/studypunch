@@ -1,43 +1,26 @@
-<!-- Sticky header -->
-<!-- <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-  <div class="container-fluid">
-    <div class="navbar-name">
-      <h1>Thats what she said</h1>
-    </div>
-    <a class="navbar-user" href="#">
-      Vadim Klishevich
-    </a>
+<nav class="navbar navbar-expand-sm navbar-light bg-white sticky-top">
+  <a class="navbar-brand" routerLink=""><img src="../favicon.ico" width=50></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto d-flex justify-content-between">
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold" routerLink="/homework">Homework</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold" routerLink="/group">Group</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold" routerLink="/subjects">Subjects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold" routerLink="/login">{{user.getCurrentUser().username}} Icon2</a>
+      </li>
+    </ul>
   </div>
-</nav> -->
-
-<nav ngbNav #nav="ngbNav" class="nav-pills nav-fill sticky-top">
-
-  <ng-container ngbNavItem>
-    <a ngbNavLink routerLink=""><img src="../favicon.ico" width=100></a>
-  </ng-container>
-  <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="/homework">Homework</a>
-  </ng-container>
-  <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="/group">Group</a>
-  </ng-container>
-  <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="/subjects">Subjects</a>
-  </ng-container>
-  <ng-container ngbNavItem>
-    <a ngbNavLink routerLink="/login">{{user.username}} Icon2</a>
-  </ng-container>
-
 </nav>
-
-<hr>
-
-<div class="">
-  <h1>
-    {{user.group.name}} {{title}}
-    <button type="button" class="btn btn-success" align="center">Add homework</button>
-  </h1>
-  <hr>
-</div>
 
 <router-outlet></router-outlet>
