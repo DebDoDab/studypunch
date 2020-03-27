@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'homework',
     'accounts',
     'groups',
+    'donehomework',
     'subjects',
     'api',
     'authentication',

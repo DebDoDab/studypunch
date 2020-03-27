@@ -3,8 +3,8 @@ from django.utils.crypto import get_random_string
 
 
 class GroupManager(models.Manager):
-    def createGroup(self, name, token):
-        group = self.create(name=name, token=Group.generateToken())
+    def create(self, name, token=""):
+        group = super().create(name=name, token=Group.generateToken())
         return group
 
 
@@ -20,11 +20,7 @@ class Group(models.Model):
     @staticmethod
     def createAdminGroup():
         token = Group.generateToken()
-        try:
-            group = Group.objects.get(name='admin', token=token)
-        except Group.DoesNotExist:
-            group = Group.objects.create(name='admin', token=token)
-        return group.id
+        group = Group.objects.create(name="admin")
 
     @staticmethod
     def generateToken():

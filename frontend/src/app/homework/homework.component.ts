@@ -45,7 +45,8 @@ export class HomeworkComponent implements OnInit {
     let week = new Date();
     week.setDate(today.getDate() + 7);
     let twoWeeks = new Date();
-    twoWeeks.setDate(week.getDate() + 7);
+    twoWeeks.setDate(today.getDate() + 14);
+    console.log(today, week, twoWeeks)
 
     for (let homework of result) {
       homework.deadline = new Date(homework.deadline);

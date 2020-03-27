@@ -3,6 +3,7 @@ from accounts.views import UserViewSet
 from groups.views import GroupViewSet
 from homework.views import HomeworkViewSet
 from subjects.views import SubjectViewSet
+from donehomework.views import DoneHomeworkViewSet
 from django.urls import path, include
 
 router = routers.DefaultRouter()
@@ -10,6 +11,7 @@ router.register(r'users', viewset=UserViewSet)
 router.register(r'groups', viewset=GroupViewSet)
 router.register(r'homework', viewset=HomeworkViewSet)
 router.register(r'subjects', viewset=SubjectViewSet)
+router.register(r'donehomework', viewset=DoneHomeworkViewSet)
 
 urlpatterns = [
     path(r'', include(router.urls)),
