@@ -26,10 +26,6 @@ export class ApiService {
       console.log(this.cookies.getAll());
   }
 
-  printCookies() {
-    console.log(this.cookies.get('access_token'));
-  }
-
   private setHeadersAuth(): void {
     if (this.cookies.check('access_token')) {
       this.httpHeaders = this.httpHeaders.set(
@@ -41,11 +37,11 @@ export class ApiService {
   private setCookiesAuth(response: JSON) {
     if (response['access']) {
       this.cookies.delete('access_token');
-      this.cookies.set('access_token', response['access']);
+      this.cookies.set('access_token', response['access'], undefined, '/');
     }
     if (response['refresh']) {
       this.cookies.delete('refresh_token');
-      this.cookies.set('refresh_token', response['refresh']);
+      this.cookies.set('refresh_token', response['refresh'], undefined, '/');
     }
     this.setHeadersAuth();
   }
