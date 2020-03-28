@@ -11,7 +11,7 @@ import { CurrentUserService } from '../shared/services/current-user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: CurrentUserService;
+  userPipe = CurrentUserService.userPipe;
   response: any;
   headers: any;
   token: string;
@@ -21,9 +21,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(""),
   });
 
-  constructor(private api: ApiService) {
-    this.user = new CurrentUserService(api);
-  }
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {
 

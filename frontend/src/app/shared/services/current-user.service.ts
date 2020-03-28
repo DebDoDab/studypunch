@@ -2,23 +2,36 @@ import { Injectable } from '@angular/core';
 
 import { User } from '../../models/user';
 import { ApiService } from '../../api/api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrentUserService {
   static user = new User();
+  static userPipe: Observable<User> = new Observable<User>(observer => {
+    observer.next(CurrentUserService.user);
+    setInterval(() => {
+      // console.log(CurrentUserService.user);
+      observer.next(CurrentUserService.user);
+    }, 1000);
+  });
 
-  constructor(private api: ApiService) {}
+  constructor() {}
 
-  setCurrentUser(): void {
-    this.api.getCurrentUser().then(user => {
+  static setCurrentUser(api: ApiService): void {
+    api.getCurrentUser().then(user => {
       console.log(user);
       CurrentUserService.user = user;
+      // CurrentUserService.userPipe.
     }).catch(err => {});
   }
 
   getCurrentUser(): User {
     return CurrentUserService.user;
   }
+
+
+
+
 }

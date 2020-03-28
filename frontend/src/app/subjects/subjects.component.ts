@@ -11,11 +11,9 @@ import { Subject } from '../models/subject';
 })
 export class SubjectsComponent implements OnInit {
   subjects: Array<Array<Subject>> = new Array(4).fill(false).map(() => new Array());
-  user: CurrentUserService;
+  userPipe = CurrentUserService.userPipe;
 
-  constructor(private api: ApiService, private router: Router) {
-    this.user = new CurrentUserService(api);
-  }
+  constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.api.getSubjects().then(resp => {

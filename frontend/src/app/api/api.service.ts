@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { Subject } from '../models/subject';
 import { Homework } from '../models/homework';
+import { CurrentUserService } from '../shared/services/current-user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,7 @@ export class ApiService {
     try {
       var x = await this.createJWT(loginData);
       console.log(x);
+      CurrentUserService.setCurrentUser(this);
       return new Observable((observer) => {
         observer.next({message: "You succesfully logined", type: "success"});
         observer.complete();

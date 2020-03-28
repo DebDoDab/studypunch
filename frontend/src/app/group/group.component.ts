@@ -10,13 +10,13 @@ import { CurrentUserService } from '../shared/services/current-user.service';
   styleUrls: ['./group.component.css']
 })
 export class GroupComponent implements OnInit {
-  user: CurrentUserService;
+  userPipe = CurrentUserService.userPipe;
   users: Array<Array<User>> = new Array(4).fill(false).map(() => {
     return new Array();
   });
 
   constructor(private api: ApiService, private router: Router) {
-    this.user = new CurrentUserService(this.api);
+    
   }
 
   ngOnInit(): void {

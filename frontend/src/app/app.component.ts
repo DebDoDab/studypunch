@@ -3,6 +3,7 @@ import { ApiService } from './api/api.service';
 import { CurrentUserService } from './shared/services/current-user.service';
 
 import { User } from './models/user';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,11 @@ import { User } from './models/user';
 })
 export class AppComponent implements OnInit {
   title = 'Study Punch';
-  user: CurrentUserService;
+  userPipe: Observable<User> = CurrentUserService.userPipe;
 
   constructor(private api: ApiService) {
-    this.user = new CurrentUserService(this.api);
-    this.user.setCurrentUser();
+    CurrentUserService.setCurrentUser(this.api);
+    // setTimeout(() => console.log(CurrentUserService.user, "!!!!!!!!!!!!!!!!!!!!!!!!!"), 1000);
   }
 
   ngOnInit() {

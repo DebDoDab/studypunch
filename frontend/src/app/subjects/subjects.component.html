@@ -1,12 +1,12 @@
 <div class="p-3">
   <div class="text-center text-color-navy">
     <h1>
-      <span class="mx-5">{{user.getCurrentUser().group.name}}'s Subjects</span>
-      <button type="button" class="btn button-secondary text-color-navy shadow-lg px-5 mx-5">Add subject</button>
+      <span class="mx-4 big-text">{{(userPipe | async).group.name}}'s Subjects</span>
+      <button type="button" class="btn button-secondary text-color-navy shadow-lg px-4 mx-4">Add subject</button>
     </h1>
   </div>
 </div>
-<hr>
+<hr class="my-0">
 <!-- 4 columns -->
 <div class="container-fluid padding">
   <div class="row text-center padding">
@@ -15,7 +15,7 @@
         <ul class="list-group">
           <li *ngFor="let subject of column" class="subject list-group-item p-0 m-3 shadow">
             <div class="name text-white btn button-primary w-100 py-3 m-0" (click)="btnClick(subject)">
-                {{subject.name}}
+                <h4>{{subject.name}}</h4>
             </div>
           </li>
         </ul>

@@ -1,3 +1,11 @@
+* {
+  font-family: 'Sen', sans-serif;
+}
+
+header {
+  font-size: 16pt;
+}
+
 /* You can add global styles to this file, and also import other style files */
 .button-primary {
   background-color: #68cec7;
@@ -33,6 +41,7 @@
 
 .text-color-navy {
   color: #00458b;
+  text-shadow: 2px 2px 10px #00458b44;
 }
 
 .text-color-navy:hover {
@@ -49,4 +58,12 @@
 
 .background-color-white {
   background-color: #fffd!important;
+}
+
+.background-color-secondary {
+  background-color: #80d4ffcc!important;
+}
+
+.text-shadow-black {
+  text-shadow: 2px 2px 10px #0004;
 }

@@ -15,14 +15,12 @@ import { CurrentUserService } from '../shared/services/current-user.service';
   styleUrls: ['./homework.component.css']
 })
 export class HomeworkComponent implements OnInit {
-  user: CurrentUserService;
+  userPipe = CurrentUserService.userPipe;
   homework: Array<Column>;
   columnsNames = ["< week", "< 2 weeks", "longterm", "expired"];
   currentSubject: number = undefined;
 
-  constructor(private api : ApiService, private route: ActivatedRoute, private router: Router) {
-    this.user = new CurrentUserService(api);
-  }
+  constructor(private api : ApiService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.currentSubject = undefined;
@@ -68,6 +66,10 @@ export class HomeworkComponent implements OnInit {
       return;
     }
     this.router.navigateByUrl("homework?id=" + subject.id);
+  }
+
+  homeworkClick(homework: Homework): void {
+    this.router.navigateByUrl("");
   }
 
 }
