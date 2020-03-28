@@ -4,14 +4,20 @@ import { SubjectComponent } from './subject/subject.component';
 import { SubjectsComponent } from './subjects.component';
 import { RouterModule } from '@angular/router';
 
+import { ApiService } from '../api/api.service';
+
 @NgModule({
   declarations: [
-    SubjectComponent,
-    SubjectsComponent
+    SubjectsComponent,
+    SubjectComponent
   ],
   imports: [
     CommonModule,
     RouterModule
+  ],
+  exports: [
+    SubjectsComponent,
+    SubjectComponent
   ]
 })
 export class SubjectsModule { }

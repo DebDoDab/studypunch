@@ -27,6 +27,10 @@ export class CurrentUserService {
     }).catch(err => {});
   }
 
+  static setCurrentUsertoNone(): void {
+    CurrentUserService.user = new User();
+  }
+
   getCurrentUser(): User {
     return CurrentUserService.user;
   }

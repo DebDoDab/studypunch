@@ -63,9 +63,10 @@ export class HomeworkComponent implements OnInit {
 
   btnClick(subject: Subject): void {
     if (subject.id == this.currentSubject) {
-      return;
+      this.router.navigateByUrl("homework");
+    } else {
+      this.router.navigateByUrl("homework?id=" + subject.id);
     }
-    this.router.navigateByUrl("homework?id=" + subject.id);
   }
 
   homeworkClick(homework: Homework): void {

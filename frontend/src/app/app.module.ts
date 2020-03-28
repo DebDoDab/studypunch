@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeworkComponent } from './homework/homework.component';
 import { GroupComponent } from './group/group.component';
 import { SubjectsModule } from './subjects/subjects.module';
+import { ApiService } from './api/api.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { SubjectsModule } from './subjects/subjects.module';
     FormsModule,
     SubjectsModule
   ],
-  providers: [],
+  exports: [
+
+  ],
+  providers: [ApiService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

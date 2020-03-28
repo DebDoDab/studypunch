@@ -7,7 +7,7 @@ import { Subject } from '../models/subject';
 @Component({
   selector: 'app-subjects',
   templateUrl: './subjects.component.html',
-  styleUrls: ['./subjects.component.css']
+  styleUrls: ['./subjects.component.css'],
 })
 export class SubjectsComponent implements OnInit {
   subjects: Array<Array<Subject>> = new Array(4).fill(false).map(() => new Array());
@@ -27,6 +27,10 @@ export class SubjectsComponent implements OnInit {
       this.subjects[index % 4].push(subject);
       index++;
     }
+  }
+
+  addClick() {
+    // this.api.printCookies();
   }
 
   subjectClick(subject: Subject): void {

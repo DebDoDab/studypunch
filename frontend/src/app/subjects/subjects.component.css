@@ -1,3 +1,7 @@
 .subject {
-  background-color: "#0c80f9";
+  /* height: 4em; */
+}
+
+.list-group-item {
+  border-width: 0;
 }

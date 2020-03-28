@@ -13,17 +13,24 @@ import { CurrentUserService } from '../shared/services/current-user.service';
   providedIn: 'root'
 })
 export class ApiService {
-  baseurl = "http://localhost:8000/api/";
-  httpHeaders = new HttpHeaders(
+  private baseurl = "http://localhost:8000/api/";
+  private httpHeaders = new HttpHeaders(
     {'Content-Type': 'application/json'},
   );
 
   constructor(
     private http: HttpClient,
     private cookies: CookieService,
-    private router: Router) {}
+    private router: Router) {
+      console.log("new apiService instance created");
+      console.log(this.cookies.getAll());
+  }
 
-  setHeadersAuth(): void {
+  printCookies() {
+    console.log(this.cookies.get('access_token'));
+  }
+
+  private setHeadersAuth(): void {
     if (this.cookies.check('access_token')) {
       this.httpHeaders = this.httpHeaders.set(
         'Authorization', 'JWT ' + this.cookies.get('access_token'),
@@ -31,21 +38,23 @@ export class ApiService {
     }
   }
 
-  setCookiesAuth(response: JSON) {
+  private setCookiesAuth(response: JSON) {
     if (response['access']) {
+      this.cookies.delete('access_token');
       this.cookies.set('access_token', response['access']);
     }
     if (response['refresh']) {
+      this.cookies.delete('refresh_token');
       this.cookies.set('refresh_token', response['refresh']);
     }
     this.setHeadersAuth();
   }
 
-  redirectToLogin(): void {
+  private redirectToLogin(): void {
     this.router.navigateByUrl('login');
   }
 
-  async createJWT(loginData): Promise<any> {
+  private async createJWT(loginData): Promise<any> {
     return this.http
       .post(this.baseurl + 'auth/jwt/create/',
         loginData,
@@ -56,7 +65,7 @@ export class ApiService {
       });
   }
 
-  async refreshJWT(): Promise<any> {
+  private async refreshJWT(): Promise<any> {
     return this.http
       .post(this.baseurl + 'auth/jwt/refresh/',
         {refresh: this.cookies.get('refresh_token')},
@@ -67,7 +76,7 @@ export class ApiService {
       });
   }
 
-  async verifyJWT(token: string = this.cookies.get('access_token')): Promise<any> {
+  private async verifyJWT(token: string = this.cookies.get('access_token')): Promise<any> {
     return this.http
       .post(this.baseurl + 'auth/jwt/verify/',
         {token: token},
@@ -75,12 +84,13 @@ export class ApiService {
     ).toPromise();
   }
 
-  async setJWT(): Promise<any> {
+  private async setJWT(): Promise<any> {
     await this.refreshJWT()
       .then(() => {
         this.setHeadersAuth();
         return;
       }).catch(() => {
+        CurrentUserService.setCurrentUsertoNone();
         this.redirectToLogin();
         throw new Error("Need to authenticate");
       });
