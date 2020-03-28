@@ -29,6 +29,10 @@ export class SubjectsComponent implements OnInit {
     }
   }
 
+  subjectClick(subject: Subject): void {
+    this.router.navigateByUrl("subjects/" + subject.id);
+  }
+
   btnClick(subject: Subject): void {
     this.router.navigateByUrl("homework?id=" + subject.id);
   }

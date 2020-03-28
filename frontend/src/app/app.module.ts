@@ -10,15 +10,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeworkComponent } from './homework/homework.component';
 import { GroupComponent } from './group/group.component';
-import { SubjectsComponent } from './subjects/subjects.component';
+import { SubjectsModule } from './subjects/subjects.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeworkComponent,
-    GroupComponent,
-    SubjectsComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +26,7 @@ import { SubjectsComponent } from './subjects/subjects.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    SubjectsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
