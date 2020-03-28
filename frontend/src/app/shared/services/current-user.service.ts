@@ -14,7 +14,7 @@ export class CurrentUserService {
     setInterval(() => {
       // console.log(CurrentUserService.user);
       observer.next(CurrentUserService.user);
-    }, 1000);
+    }, 500);
   });
 
   constructor() {}
@@ -23,7 +23,6 @@ export class CurrentUserService {
     api.getCurrentUser().then(user => {
       console.log(user);
       CurrentUserService.user = user;
-      // CurrentUserService.userPipe.
     }).catch(err => {});
   }
 

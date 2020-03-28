@@ -17,11 +17,9 @@ export class AppComponent implements OnInit {
 
   constructor(private api: ApiService) {
     CurrentUserService.setCurrentUser(this.api);
-    // setTimeout(() => console.log(CurrentUserService.user, "!!!!!!!!!!!!!!!!!!!!!!!!!"), 1000);
   }
 
   ngOnInit() {
-    console.log(CurrentUserService.user.username);
   }
 
 
