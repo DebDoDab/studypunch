@@ -16,7 +16,7 @@
         <h1 class="text-color-navy pt-3">{{column.title}}</h1>
         <hr>
         <ul class="list-group">
-          <li *ngFor="let homework of column.data" class="homework button-secondary list-group-item p-0">
+          <li *ngFor="let homework of column.data" class="homework button-primary list-group-item p-0">
             <div class="w-100">
               <button class="btn btn-info p-0 w-100" (click)="btnClick(homework.subject)">
                 {{homework.subject.name}}

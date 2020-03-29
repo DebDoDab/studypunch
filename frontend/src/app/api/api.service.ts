@@ -167,4 +167,34 @@ export class ApiService {
         return <Array<Homework>>resp['results'];
       });
   }
+
+  async getSubject(subjectId: number): Promise<Subject> {
+    await this.setJWT();
+    return this.http
+      .get(this.baseurl + 'subjects/' + subjectId + '/', {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => <Subject>resp);
+  }
+
+  async patchSubject(subjectId: number, data): Promise<Subject> {
+    await this.setJWT();
+    return this.http
+      .patch(this.baseurl + 'subjects/' + subjectId + '/',
+        data,
+        {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => <Subject>resp);
+  }
+
+  async postSubject(data): Promise<Subject> {
+    await this.setJWT();
+    let group_id = CurrentUserService.user.group.id;
+    data['group_id'] = group_id;
+    return this.http
+      .post(this.baseurl + 'subjects/',
+        data,
+        {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => <Subject>resp);
+  }
 }

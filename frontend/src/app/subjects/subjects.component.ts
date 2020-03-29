@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api/api.service';
 import { CurrentUserService } from '../shared/services/current-user.service';
 import { Subject } from '../models/subject';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SubjectComponent } from './subject/subject.component';
 
 @Component({
   selector: 'app-subjects',
@@ -13,12 +15,12 @@ export class SubjectsComponent implements OnInit {
   subjects: Array<Array<Subject>> = new Array(4).fill(false).map(() => new Array());
   userPipe = CurrentUserService.userPipe;
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(private api: ApiService, private router: Router, public modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.api.getSubjects().then(resp => {
       this.divide(resp);
-    })
+    });
   }
 
   divide(response: Array<Subject>): void {
@@ -30,15 +32,44 @@ export class SubjectsComponent implements OnInit {
   }
 
   addClick() {
-    // this.api.printCookies();
+    let subject: Subject;
+    const modalRef = this.modalService.open(SubjectComponent);
+    modalRef.componentInstance.isEditing = false;
+    modalRef.result.then((result) => {
+      if (result) {
+        subject = result;
+      }
+    }, (reason) => {
+      console.log("CLOSED WITH REASON");
+    }).finally(() => {
+      this.replace(subject);
+    });
   }
 
   subjectClick(subject: Subject): void {
-    this.router.navigateByUrl("subjects/" + subject.id);
+    const modalRef = this.modalService.open(SubjectComponent);
+    console.log(subject);
+    modalRef.componentInstance.subjectset = subject;
+    modalRef.result.then((result) => {
+      if (result) {
+        subject = result;
+      }
+    }, (reason) => {
+      console.log("CLOSED WITH REASON");
+    }).finally(() => {
+      this.replace(subject);
+    });
   }
 
   btnClick(subject: Subject): void {
     this.router.navigateByUrl("homework?id=" + subject.id);
   }
+
+  replace(subject: Subject): void {
+    //need async pipes or full replace
+    //now its nothing to do
+    window.location.reload();
+  }
+
 
 }

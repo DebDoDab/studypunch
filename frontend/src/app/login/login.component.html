@@ -8,8 +8,8 @@
 </div>
 <hr>
 
-<ng-template [ngIf]="alert.state" >
-  <ngb-alert [type]=alert.type (close)=alert.clear()>
+<ng-template [ngIf]="alert.state">
+  <ngb-alert [type]="alert.type" (close)=alert.clear()>
     <h4>{{alert.message}}</h4>
   </ngb-alert>
 </ng-template>

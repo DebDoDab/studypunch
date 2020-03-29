@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'homework', component: HomeworkComponent },
   { path: 'login', component: LoginComponent },
   { path: 'group', component: GroupComponent },
-  { path: 'subjects', component: SubjectsComponent, children: [{path: ':id', component: SubjectComponent}] },
+  { path: 'subjects', component: SubjectsComponent },
 ];
 
 @NgModule({
