@@ -53,7 +53,6 @@ export class HomeworkDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getSubjects().then(resp => {this.subjects = resp;});
-    setInterval(() => {console.log(this.homeworkData.get('subject').value)}, 1000);
   }
 
   // search = (text$: Observable<string>) =>

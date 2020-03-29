@@ -23,8 +23,6 @@ export class ApiService {
     private http: HttpClient,
     private cookies: CookieService,
     private router: Router) {
-      console.log("new apiService instance created");
-      console.log(this.cookies.getAll());
   }
 
   private setHeadersAuth(): void {
@@ -96,14 +94,12 @@ export class ApiService {
   async login(loginData): Promise<any> {
     try {
       var x = await this.createJWT(loginData);
-      console.log(x);
       CurrentUserService.setCurrentUser(this);
       return new Observable((observer) => {
         observer.next({message: "You succesfully logined", type: "success"});
         observer.complete();
       }).toPromise();
     } catch {
-      console.log("@");
       return new Observable((observer) => {
         observer.next({message: "Login error", type: "danger"});
         observer.complete();
@@ -152,7 +148,6 @@ export class ApiService {
     let user = await this.http
       .get(this.baseurl + "auth/users/me/", {headers: this.httpHeaders})
       .toPromise();
-    console.log(user);
     return this.http
       .get(this.baseurl + 'users/' + user['id'] + '/', {headers: this.httpHeaders})
       .toPromise()
@@ -239,7 +234,6 @@ export class ApiService {
     data['deadline'] = data['deadline'].toISOString().split('T')[0];
     data['subject_id'] = data['subject'].id;
     delete data['subject'];
-    console.log("Patching", homeworkId, data);
     await this.setJWT();
     return this.http
       .patch(this.baseurl + 'homework/' + homeworkId + '/',
