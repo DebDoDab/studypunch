@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 import { GroupComponent } from './group/group.component';
 import { SubjectsModule } from './subjects/subjects.module';
 import { ApiService } from './api/api.service';
@@ -17,8 +18,9 @@ import { HomeworkModule } from './homework/homework.module';
 @NgModule({
   declarations: [
     AppComponent,
+    GroupComponent,
     LoginComponent,
-    GroupComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,7 @@ import { HomeworkModule } from './homework/homework.module';
     ReactiveFormsModule,
     FormsModule,
     SubjectsModule,
-    HomeworkModule
+    HomeworkModule,
   ],
   exports: [
 

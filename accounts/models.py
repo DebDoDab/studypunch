@@ -9,20 +9,16 @@ class CustomUserManager(UserManager):
         """
         Create and save a user with the given username, email, and password.
         """
-        # print("ASDADASDASD")
         if not username:
             raise ValueError('The given username must be set')
         email = self.normalize_email(email)
         username = self.model.normalize_username(username)
         group_id = extra_fields.pop('group')
         if isinstance(group_id, int):
-            # print("GROUP IS INT")
             user = self.model(username=username, email=email, group=Group.objects.get(id=group_id), **extra_fields)
         elif isinstance(group_id, str):
-            # print("GROUP IS STRING")
             user = self.model(username=username, email=email, group=Group.objects.get(token=group_id), **extra_fields)
         else:
-            # print("GROUP IS GROUP")
             user = self.model(username=username, email=email, group=group_id, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)

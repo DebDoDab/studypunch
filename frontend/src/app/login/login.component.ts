@@ -4,6 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Alert } from '../models/alert';
 import { CurrentUserService } from '../shared/services/current-user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +14,17 @@ import { CurrentUserService } from '../shared/services/current-user.service';
 })
 export class LoginComponent implements OnInit {
   userPipe = CurrentUserService.userPipe;
-  response: any;
-  headers: any;
-  token: string;
   alert: Alert = new Alert();
   loginData = new FormGroup({
     username: new FormControl(""),
     password: new FormControl(""),
   });
 
-  constructor(private api: ApiService) {}
+  constructor(
+    private api: ApiService,
+    private modalService: NgbModal,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
 
@@ -34,5 +37,13 @@ export class LoginComponent implements OnInit {
       this.alert.set(result.message, result.type);
     }).catch(err => {});
   };
+
+  logoutClick() {
+    this.api.logout();
+  }
+
+  signupClick() {
+    this.router.navigateByUrl('signup');
+  }
 
 }

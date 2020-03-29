@@ -110,6 +110,35 @@ export class ApiService {
     }
   }
 
+  logout() {
+    this.httpHeaders.delete('access_token');
+    this.httpHeaders.delete('refresh_token');
+    this.cookies.delete('access_token');
+    this.cookies.delete('refresh_token');
+    CurrentUserService.setCurrentUser(this);
+  }
+
+  async signup(signupData): Promise<any> {
+    let user = await this.http
+      .post(this.baseurl + 'users/', signupData, {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => <User>resp);
+    try {
+      await this.createJWT({username: signupData['username'], password: signupData['password']});
+      CurrentUserService.setCurrentUser(this);
+      return new Observable((observer) => {
+        observer.next({message: "You succesfully logined", type: "success"});
+        observer.complete();
+      }).toPromise();
+    } catch {
+      return new Observable((observer) => {
+        observer.next({message: "Login error", type: "danger"});
+        observer.complete();
+      }).toPromise();
+    }
+
+  }
+
   async getCurrentUser(): Promise<User> {
     await this.setJWT();
     let user = await this.http
