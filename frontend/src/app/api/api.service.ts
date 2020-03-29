@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { Subject } from '../models/subject';
 import { Homework } from '../models/homework';
+import { Group } from '../models/group';
 import { CurrentUserService } from '../shared/services/current-user.service';
 
 @Injectable({
@@ -137,6 +138,13 @@ export class ApiService {
       }).toPromise();
     }
 
+  }
+
+  async createGroup(groupData): Promise<Group> {
+    return this.http
+      .post(this.baseurl + 'groups/', groupData, {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => <Group>resp);
   }
 
   async getCurrentUser(): Promise<User> {

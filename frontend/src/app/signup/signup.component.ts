@@ -18,6 +18,8 @@ export class SignupComponent implements OnInit {
     password: new FormControl(""),
     passwordConfirm: new FormControl(""),
     group_token: new FormControl(""),
+    group_name: new FormControl(""),
+    group_action: new FormControl("Group")
   });
 
   constructor(
@@ -27,7 +29,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    setInterval(() => {console.log(this.signupData.get('group_action').value);}, 1000);
   }
 
   signup() {
@@ -39,10 +41,25 @@ export class SignupComponent implements OnInit {
       this.alert.set("Password should be at least 8 symbols", "danger");
       return;
     }
-    this.api.signup(this.signupData.value).then(result => {
-      console.log("Login Done", result);
-      this.alert.set(result.message, result.type);
-    }).catch(err => {});
+    if (this.signupData.get('group_action').value == 'Token') {
+      this.api.signup(this.signupData.value).then(result => {
+        console.log("Login Done", result);
+        this.alert.set(result.message, result.type);
+      }).catch(err => {});
+    } else {
+      let token = "";
+      this.api.createGroup({name: this.signupData.get('group_name').value})
+        .then(group => {
+          token = group['token'];
+
+          this.signupData.patchValue({group_token: token});
+          console.log(this.signupData.value);
+          this.api.signup(this.signupData.value).then(result => {
+            console.log("Login Done", result);
+            this.alert.set(result.message, result.type);
+          }).catch(err => {});
+        });
+    }
   };
 
   loginClick() {

@@ -18,6 +18,16 @@ header {
   border-color: #73e7d3;
 }
 
+.button-primary:focus {
+  background-color: #52c7bf;
+  border-color: #52c7bf;
+}
+
+.button-primary:active {
+  background-color: #3ec1b8;
+  border-color: #3ec1b8;
+}
+
 .button-secondary {
   background-color: #99ddff;
   border-color: #99ddff;
