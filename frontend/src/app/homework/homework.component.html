@@ -2,7 +2,7 @@
   <div class="text-center text-color-navy">
     <h1>
       <span class="mx-4 px-auto">{{(userPipe | async).group.name}}'s Homework</span>
-      <button type="button" class="btn button-secondary text-color-navy shadow-lg mx-4 px-4">Add homework</button>
+      <button type="button" class="btn button-secondary text-color-navy shadow-lg mx-4 px-4" (click)="addClick()">Add homework</button>
     </h1>
   </div>
 </div>

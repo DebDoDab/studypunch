@@ -5,7 +5,6 @@ import { HomeworkComponent } from './homework/homework.component';
 import { LoginComponent } from './login/login.component';
 import { GroupComponent } from './group/group.component';
 import { SubjectsComponent } from './subjects/subjects.component';
-import { SubjectComponent } from './subjects/subject/subject.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homework', pathMatch: 'full' },

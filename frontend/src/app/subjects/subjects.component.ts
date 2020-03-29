@@ -15,7 +15,11 @@ export class SubjectsComponent implements OnInit {
   subjects: Array<Array<Subject>> = new Array(4).fill(false).map(() => new Array());
   userPipe = CurrentUserService.userPipe;
 
-  constructor(private api: ApiService, private router: Router, public modalService: NgbModal) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    public modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.api.getSubjects().then(resp => {

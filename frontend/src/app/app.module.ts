@@ -8,17 +8,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
-import { HomeworkComponent } from './homework/homework.component';
 import { GroupComponent } from './group/group.component';
 import { SubjectsModule } from './subjects/subjects.module';
 import { ApiService } from './api/api.service';
 import { CookieService } from 'ngx-cookie-service';
+import { HomeworkModule } from './homework/homework.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeworkComponent,
     GroupComponent
   ],
   imports: [
@@ -28,7 +27,8 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    SubjectsModule
+    SubjectsModule,
+    HomeworkModule
   ],
   exports: [
 

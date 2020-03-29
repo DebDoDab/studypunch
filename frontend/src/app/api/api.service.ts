@@ -197,4 +197,27 @@ export class ApiService {
       .toPromise()
       .then(resp => <Subject>resp);
   }
+
+  async patchHomework(homeworkId: number, data): Promise<Homework> {
+    console.log("Patching", homeworkId, data);
+    await this.setJWT();
+    return this.http
+      .patch(this.baseurl + 'subjects/' + homeworkId + '/',
+        data,
+        {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => <Homework>resp);
+  }
+
+  async postHomework(data): Promise<Homework> {
+    await this.setJWT();
+    let group_id = CurrentUserService.user.group.id;
+    data['group_id'] = group_id;
+    return this.http
+      .post(this.baseurl + 'homework/',
+        data,
+        {headers: this.httpHeaders})
+      .toPromise()
+      .then(resp => <Homework>resp);
+  }
 }

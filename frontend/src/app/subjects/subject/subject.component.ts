@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from '../../models/subject';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Alert } from '../../models/alert';
-import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api/api.service';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,12 +15,12 @@ export class SubjectComponent implements OnInit {
   subject: Subject = new Subject();
   @Input()
   set subjectset(subject: Subject) {
-    console.log(subject, "setter");
     this.subject = subject;
     this.subjectData.setValue({name: subject.name});
   }
   @Input()
   isEditing: boolean = true;
+
   subjectData = new FormGroup({
     name: new FormControl(""),
   });
@@ -59,8 +58,6 @@ export class SubjectComponent implements OnInit {
   }
 
   navigateBack() {
-    console.log(this.subject);
-    console.log("returning subject");
     this.activeModal.close(this.subject);
   }
 

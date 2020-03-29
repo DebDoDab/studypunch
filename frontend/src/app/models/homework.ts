@@ -6,7 +6,7 @@ export class Homework {
   deadline: Date;
   subject: Subject;
   name: string;
-  descriprion: string;
+  description: string;
 
   constructor() {
     this.id = -1;
@@ -14,7 +14,7 @@ export class Homework {
     this.deadline = new Date(0);
     this.subject = new Subject();
     this.name = "undefined";
-    this.descriprion = "";
+    this.description = "";
   }
 
   getDeadline(): string {

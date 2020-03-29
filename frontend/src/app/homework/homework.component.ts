@@ -8,6 +8,8 @@ import { User } from '../models/user';
 import { Subject } from '../models/subject';
 
 import { CurrentUserService } from '../shared/services/current-user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HomeworkDetailsComponent } from './homework-details/homework-details.component';
 
 @Component({
   selector: 'app-homework',
@@ -20,7 +22,12 @@ export class HomeworkComponent implements OnInit {
   columnsNames = ["< week", "< 2 weeks", "longterm", "expired"];
   currentSubject: number = undefined;
 
-  constructor(private api : ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private api : ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    public modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.currentSubject = undefined;
@@ -69,8 +76,39 @@ export class HomeworkComponent implements OnInit {
     }
   }
 
+  addClick() {
+    let homework: Homework;
+    const modalRef = this.modalService.open(HomeworkDetailsComponent);
+    modalRef.componentInstance.isEditing = false;
+    modalRef.result.then((result) => {
+      if (result) {
+        homework = result;
+      }
+    }, (reason) => {
+      console.log("CLOSED WITH REASON");
+    }).finally(() => {
+      this.replace(homework);
+    });
+  }
+
   homeworkClick(homework: Homework): void {
-    this.router.navigateByUrl("");
+    const modalRef = this.modalService.open(HomeworkDetailsComponent);
+    modalRef.componentInstance.homeworkset = homework;
+    modalRef.result.then((result) => {
+      if (result) {
+        homework = result;
+      }
+    }, (reason) => {
+      console.log("CLOSED WITH REASON");
+    }).finally(() => {
+      this.replace(homework);
+    });
+  }
+
+  replace(subject: Subject): void {
+    //need async pipes or full replace
+    //now its nothing to do
+    window.location.reload();
   }
 
 }
