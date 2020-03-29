@@ -12,7 +12,6 @@ export class CurrentUserService {
   static userPipe: Observable<User> = new Observable<User>(observer => {
     observer.next(CurrentUserService.user);
     setInterval(() => {
-      // console.log(CurrentUserService.user);
       observer.next(CurrentUserService.user);
     }, 500);
   });
@@ -21,7 +20,6 @@ export class CurrentUserService {
 
   static setCurrentUser(api: ApiService): void {
     api.getCurrentUser().then(user => {
-      console.log(user);
       CurrentUserService.user = user;
     }).catch(err => {});
   }

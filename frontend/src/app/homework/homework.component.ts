@@ -51,11 +51,9 @@ export class HomeworkComponent implements OnInit {
     week.setDate(today.getDate() + 7);
     let twoWeeks = new Date();
     twoWeeks.setDate(today.getDate() + 14);
-    console.log(today, week, twoWeeks)
 
     for (let homework of result) {
       homework.deadline = new Date(homework.deadline);
-      console.log("!", today);
       if (homework.deadline <= today) {
         this.homework[3].data.push(homework);
       } else if (homework.deadline <= week) {
@@ -85,7 +83,6 @@ export class HomeworkComponent implements OnInit {
         homework = result;
       }
     }, (reason) => {
-      console.log("CLOSED WITH REASON");
     }).finally(() => {
       this.replace(homework);
     });
@@ -99,7 +96,6 @@ export class HomeworkComponent implements OnInit {
         homework = result;
       }
     }, (reason) => {
-      console.log("CLOSED WITH REASON");
     }).finally(() => {
       this.replace(homework);
     });

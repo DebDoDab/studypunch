@@ -31,9 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginData.value);
     this.api.login(this.loginData.value).then(result => {
-      console.log("Login Done", result);
       this.alert.set(result.message, result.type);
     }).catch(err => {});
   };

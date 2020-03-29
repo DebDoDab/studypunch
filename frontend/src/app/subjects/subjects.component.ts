@@ -44,7 +44,6 @@ export class SubjectsComponent implements OnInit {
         subject = result;
       }
     }, (reason) => {
-      console.log("CLOSED WITH REASON");
     }).finally(() => {
       this.replace(subject);
     });
@@ -52,14 +51,12 @@ export class SubjectsComponent implements OnInit {
 
   subjectClick(subject: Subject): void {
     const modalRef = this.modalService.open(SubjectComponent);
-    console.log(subject);
     modalRef.componentInstance.subjectset = subject;
     modalRef.result.then((result) => {
       if (result) {
         subject = result;
       }
     }, (reason) => {
-      console.log("CLOSED WITH REASON");
     }).finally(() => {
       this.replace(subject);
     });

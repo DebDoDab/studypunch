@@ -29,11 +29,9 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    setInterval(() => {console.log(this.signupData.get('group_action').value);}, 1000);
   }
 
   signup() {
-    console.log(this.signupData);
     if (this.signupData.get('password').value !== this.signupData.get('passwordConfirm').value) {
       this.alert.set("Passwords don't match", "danger");
       return;
@@ -43,7 +41,6 @@ export class SignupComponent implements OnInit {
     }
     if (this.signupData.get('group_action').value == 'Token') {
       this.api.signup(this.signupData.value).then(result => {
-        console.log("Login Done", result);
         this.alert.set(result.message, result.type);
       }).catch(err => {});
     } else {
@@ -53,9 +50,7 @@ export class SignupComponent implements OnInit {
           token = group['token'];
 
           this.signupData.patchValue({group_token: token});
-          console.log(this.signupData.value);
           this.api.signup(this.signupData.value).then(result => {
-            console.log("Login Done", result);
             this.alert.set(result.message, result.type);
           }).catch(err => {});
         });
