@@ -42,7 +42,7 @@ export class HomeworkComponent implements OnInit {
         this.api.getHomework(this.currentSubject).then(resp => {
           this.divide(resp)
         });
-      })
+      });
   }
 
   divide(result: Array<Homework>): void {

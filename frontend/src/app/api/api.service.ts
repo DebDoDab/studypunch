@@ -199,10 +199,13 @@ export class ApiService {
   }
 
   async patchHomework(homeworkId: number, data): Promise<Homework> {
+    data['deadline'] = data['deadline'].toISOString().split('T')[0];
+    data['subject_id'] = data['subject'].id;
+    delete data['subject'];
     console.log("Patching", homeworkId, data);
     await this.setJWT();
     return this.http
-      .patch(this.baseurl + 'subjects/' + homeworkId + '/',
+      .patch(this.baseurl + 'homework/' + homeworkId + '/',
         data,
         {headers: this.httpHeaders})
       .toPromise()
@@ -210,6 +213,9 @@ export class ApiService {
   }
 
   async postHomework(data): Promise<Homework> {
+    data['deadline'] = data['deadline'].toISOString().split('T')[0];
+    data['subject_id'] = data['subject'].id;
+    delete data['subject'];
     await this.setJWT();
     let group_id = CurrentUserService.user.group.id;
     data['group_id'] = group_id;

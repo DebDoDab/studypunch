@@ -5,7 +5,7 @@ import { HomeworkDetailsComponent } from './homework-details/homework-details.co
 import { RouterModule } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     FormsModule,
     NgbModule
-  ], 
-  entryComponents: [HomeworkDetailsComponent]
+  ],
+  entryComponents: [HomeworkDetailsComponent],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class HomeworkModule { }

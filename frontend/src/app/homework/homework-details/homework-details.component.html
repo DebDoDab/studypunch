@@ -14,20 +14,48 @@
 
   <form class="form-group" [formGroup]="homeworkData" (ngSubmit)="submit()">
     <div class="modal-body form-group">
+
       <label for="InputName">Homework's name</label>
-      <input type="text" class="form-control shadow-sm" id="InputName" placeholder="name" formControlName="name">
+      <input type="text" class="input-group form-control shadow-sm mb-3" id="InputName" placeholder="name" formControlName="name">
 
-      <label for="InputName">Homework's description</label>
-      <input type="text" class="form-control shadow-sm" id="InputDescription" placeholder="description" formControlName="description">
+      <label for="InputDescription">Homework's description</label>
+      <input type="text" class="input-group form-control shadow-sm mb-3" id="InputDescription" placeholder="description" formControlName="description">
 
-      <label for="InputName">Homework's flag isImportant</label>
-      <input type="text" class="form-control shadow-sm" id="InputIsImportant" placeholder="isImportant" formControlName="isImportant">
+      <label for="InputIsImportant">Homework's flag isImportant</label>
+      <div class="input-group form-check mb-3">
+        <input
+          type="checkbox"
+          class="form-check-input form-control"
+          id="InputIsImportant"
+          formControlName="isImportant"
+        >
+      </div>
 
-      <!-- <label for="InputName">Homework's deadline</label> -->
-      <!-- <input type="text" class="form-control shadow-sm" id="InputDeadline" [placeholder]="today" formControlName="deadline"> -->
+      <label for="InputDeadline">Homework's deadline</label>
+      <div class="input-group shadow-sm mb-3">
+        <input id="InputDeadline" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="deadline">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
 
-      <!-- <label for="InputName">Homework's subject</label> -->
-      <!-- <input type="text" class="form-control shadow-sm" id="InputSubject" placeholder="" formControlName="subject"> -->
+      <label for="InputSubject">Homework's subject</label>
+      <input
+        type="text"
+        class="form-control shadow-sm mb-3"
+        id="InputSubject"
+        placeholder="subject"
+        formControlName="subject"
+        [resultFormatter]="formatter"
+        [inputFormatter]="formatter"
+        [ngbTypeahead]="search"
+        #instance="ngbTypeahead"
+        (focus)="focus$.next($any($event).target.value)"
+        (click)="click$.next($any($event).target.value)"
+        [editable]="false"
+      >
+      <!-- [value]="homeworkData.get('subject').value ? homeworkData.get('subject').value.name : ''" -->
+
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="navigateBack()">Close</button>
