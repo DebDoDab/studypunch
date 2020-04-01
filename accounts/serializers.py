@@ -6,7 +6,7 @@ from groups.serializers import GroupSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     group = GroupSerializer(many=False, read_only=True)
-    password = serializers.CharField(max_length=128, write_only=True)
+    password = serializers.CharField(max_length=128, write_only=True, min_length=8)
     group_token = serializers.CharField(max_length=32, write_only=True)
 
     def create(self, validated_data):

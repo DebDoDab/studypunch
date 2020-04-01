@@ -9,6 +9,7 @@ class HomeworkSerializer(serializers.ModelSerializer):
     subject = SubjectSerializer(many=False, read_only=True)
     subject_id = serializers.IntegerField(write_only=True)
     group_id = serializers.IntegerField(write_only=True)
+    description = serializers.CharField(allow_blank=True)
 
     def create(self, validated_data):
         validated_data['group'] = Group.objects.get(id=validated_data.get('group_id'))
