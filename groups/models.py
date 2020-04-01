@@ -21,6 +21,7 @@ class Group(models.Model):
     def createAdminGroup():
         token = Group.generateToken()
         group = Group.objects.create(name="admin")
+        return group
 
     @staticmethod
     def generateToken():

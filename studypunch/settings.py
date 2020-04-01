@@ -14,7 +14,7 @@ SECRET_KEY = '#v^vpyj^!w^0irfoz=-nk=22k#iqzx%^g*woqg62ma1c@12(g1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'vadi.tel']
 
 CORS_ORIGIN_WHITELIST = (
     'http://google.com',
@@ -23,6 +23,7 @@ CORS_ORIGIN_WHITELIST = (
     'https://google.com',
     'https://localhost:8000',
     'https://localhost:4200',
+    'http://vadi.tel',
 )
 
 # JWT_AUTH = {
@@ -159,3 +160,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIR = (os.path.join(BASE_DIR, "sfiles"), )

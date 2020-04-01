@@ -13,6 +13,8 @@ class CustomUserManager(UserManager):
             raise ValueError('The given username must be set')
         email = self.normalize_email(email)
         username = self.model.normalize_username(username)
+        if isinstance(username, str):
+            username = username.lower()
         group_id = extra_fields.pop('group')
         if isinstance(group_id, int):
             user = self.model(username=username, email=email, group=Group.objects.get(id=group_id), **extra_fields)
