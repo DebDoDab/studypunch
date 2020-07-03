@@ -6,6 +6,7 @@ from subjects.serializers import SubjectSerializer
 
 
 class HomeworkSerializer(serializers.ModelSerializer):
+    """Serializer for Homework model"""
     subject = SubjectSerializer(many=False, read_only=True)
     subject_id = serializers.IntegerField(write_only=True)
     group_id = serializers.IntegerField(write_only=True)
@@ -20,4 +21,4 @@ class HomeworkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Homework
-        fields = ['id', 'isImportant', 'deadline', 'subject', 'name', 'description', 'url', 'subject_id', 'group_id']
+        fields = ['id', 'is_important', 'deadline', 'subject', 'name', 'description', 'url', 'subject_id', 'group_id']

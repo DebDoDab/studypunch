@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.permissions import AllowAny
 
 from .serializers import UserSerializer
@@ -7,6 +6,7 @@ from.models import User
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """ViewSet for User model"""
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -19,8 +19,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         try:
-            # return permission_classes depending on `action`
+            # we allow creating users everybody
             return [permission() for permission in self.permission_classes_by_action[self.action]]
         except KeyError:
-            # action is not set return default permission_classes
+            # if it's not creating we use default permission classes
             return [permission() for permission in self.permission_classes]

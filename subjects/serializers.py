@@ -1,9 +1,10 @@
+from groups.models import Group
 from rest_framework import serializers
 from .models import Subject
-from groups.models import Group
 
 
 class SubjectSerializer(serializers.ModelSerializer):
+    """Serializer for Subject model"""
     group_id = serializers.IntegerField(write_only=True)
 
     def create(self, validated_data):

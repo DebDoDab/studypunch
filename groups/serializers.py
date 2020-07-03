@@ -3,6 +3,7 @@ from .models import Group
 
 
 class GroupSerializer(serializers.ModelSerializer):
+    """Serializer for Group model"""
     token = serializers.CharField(read_only=True)
 
     def create(self, validated_data):

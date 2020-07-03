@@ -1,10 +1,10 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import DoneHomeworkSerializer
 from .models import DoneHomework
 
 
 class DoneHomeworkViewSet(viewsets.ModelViewSet):
+    """ViewSet for DoneHomework model"""
     queryset = DoneHomework.objects.all()
     serializer_class = DoneHomeworkSerializer
 

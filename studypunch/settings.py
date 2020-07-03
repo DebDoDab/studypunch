@@ -42,7 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'corsheaders',
+    'rest_framework',
+    'djoser',
+    'rest_framework_simplejwt',
+
     'homework',
     'accounts',
     'groups',
@@ -50,9 +55,6 @@ INSTALLED_APPS = [
     'subjects',
     'api',
     'authentication',
-    'rest_framework',
-    'djoser',
-    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'corsheaders.middleware.CorsMiddleware',
 ]
 

@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class DonehomeworkConfig(AppConfig):
+class DoneHomeworkConfig(AppConfig):
     name = 'donehomework'

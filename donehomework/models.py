@@ -4,5 +4,6 @@ from homework.models import Homework
 
 
 class DoneHomework(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    homework = models.ForeignKey(Homework, on_delete=models.CASCADE)
+    """Model for keeping done homework for every user"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Link to the adjacent user")
+    homework = models.ForeignKey(Homework, on_delete=models.CASCADE, verbose_name="Link to the adjacent done homework")
