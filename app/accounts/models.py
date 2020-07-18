@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import UserManager, AbstractUser
-from homework.models import Homework
 from groups.models import Group
 
 

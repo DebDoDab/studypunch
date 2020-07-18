@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class DoneHomeworkConfig(AppConfig):
-    name = 'donehomework'
+    name = 'app.donehomework'

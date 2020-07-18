@@ -1,6 +1,6 @@
 from .serializers import HomeworkSerializer
 from rest_framework import viewsets
-from.models import Homework
+from .models import Homework
 
 
 class HomeworkViewSet(viewsets.ModelViewSet):

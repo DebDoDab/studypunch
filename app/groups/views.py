@@ -2,7 +2,7 @@ from rest_framework.permissions import AllowAny
 
 from .serializers import GroupSerializer
 from rest_framework import viewsets
-from.models import Group
+from .models import Group
 
 
 class GroupViewSet(viewsets.ModelViewSet):

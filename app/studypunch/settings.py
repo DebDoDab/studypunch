@@ -12,9 +12,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#v^vpyj^!w^0irfoz=-nk=22k#iqzx%^g*woqg62ma1c@12(g1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'vadi.tel', 'api.vadi.tel']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'vadi.tel', 'api.vadi.tel']
 
 CORS_ORIGIN_WHITELIST = (
     'http://google.com',
@@ -96,8 +96,12 @@ WSGI_APPLICATION = 'studypunch.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'studypunch',
+        'USER': 'studypunch',
+        'PASSWORD': 'studypunch',
+        'HOST': 'postgres',
+        'PORT': '5432'
     }
 }
 

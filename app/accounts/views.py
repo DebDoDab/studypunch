@@ -2,7 +2,7 @@ from rest_framework.permissions import AllowAny
 
 from .serializers import UserSerializer
 from rest_framework import viewsets
-from.models import User
+from .models import User
 
 
 class UserViewSet(viewsets.ModelViewSet):

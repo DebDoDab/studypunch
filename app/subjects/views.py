@@ -1,6 +1,6 @@
 from .serializers import SubjectSerializer
 from rest_framework import viewsets
-from.models import Subject
+from .models import Subject
 
 
 class SubjectViewSet(viewsets.ModelViewSet):
