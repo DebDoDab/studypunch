@@ -9,4 +9,4 @@ RUN pip3 install -r requirements.txt
 COPY ./app ./app
 
 WORKDIR ./app
-CMD ["gunicorn", "-w", "4", "--bind", "0.0.0.0:8001", "studypunch.wsgi:application"]
+CMD ["gunicorn", "-w", "4", "--bind", "0.0.0.0:8001", "--timeout", "120", "studypunch.wsgi:application"]

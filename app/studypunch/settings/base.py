@@ -1,5 +1,4 @@
 import os
-import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,16 +13,16 @@ SECRET_KEY = '#v^vpyj^!w^0irfoz=-nk=22k#iqzx%^g*woqg62ma1c@12(g1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'vadi.tel', 'api.vadi.tel']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost',]
 
 CORS_ORIGIN_WHITELIST = (
     'http://google.com',
     'http://localhost:8000',
     'http://localhost:4200',
+    'http://vadi.tel',
     'https://google.com',
     'https://localhost:8000',
     'https://localhost:4200',
-    'http://vadi.tel',
     'https://vadi.tel',
 )
 
