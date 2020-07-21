@@ -10,6 +10,22 @@ SECRET_KEY = 'yadayadayada'
 # Rewrite ALLOWED_HOSTS to access django from your production server
 ALLOWED_HOSTS = ['vadi.tel', 'api.vadi.tel', 'localhost', '0.0.0.0']
 
+# Allow requests from browser from this domains
+CORS_ORIGIN_WHITELIST = (
+    'http://google.com',
+    'http://www.google.com',
+    'http://localhost:8000',
+    'http://localhost:4200',
+    'http://vadi.tel',
+    'http://www.vadi.tel',
+    'https://google.com',
+    'https://www.google.com',
+    'https://localhost:8000',
+    'https://localhost:4200',
+    'https://vadi.tel',
+    'https://www.vadi.tel',
+)
+
 # Logging to a console
 # To see logs run `docker-compose -f prod.yml logs python`
 LOGGING = {

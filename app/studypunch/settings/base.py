@@ -19,11 +19,9 @@ CORS_ORIGIN_WHITELIST = (
     'http://google.com',
     'http://localhost:8000',
     'http://localhost:4200',
-    'http://vadi.tel',
     'https://google.com',
     'https://localhost:8000',
     'https://localhost:4200',
-    'https://vadi.tel',
 )
 
 # JWT_AUTH = {
