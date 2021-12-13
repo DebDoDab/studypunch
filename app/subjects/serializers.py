@@ -9,7 +9,6 @@ class SubjectSerializer(serializers.ModelSerializer):
     color = serializers.CharField(max_length=7, default="#123456")
 
     def create(self, validated_data):
-        validated_data['color'] = f'#123456'
         validated_data['group'] = Group.objects.get(id=validated_data.get('group_id'))
         validated_data.pop('group_id')
         return Subject.objects.create(**validated_data)
