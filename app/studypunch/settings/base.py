@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'subjects',
     'api',
     'authentication',
+    'columns',
 ]
 
 MIDDLEWARE = [
