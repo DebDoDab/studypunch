@@ -31,6 +31,9 @@ CORS_ORIGIN_WHITELIST = (
 #     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=31536000),
 # }
 
+# WSGI_APPLICATION = 'studypunch.wsgi.application'
+ASGI_APPLICATION = 'studypunch.asgi.application'
+
 
 # Application definition
 
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'rest_framework_simplejwt',
+    'channels',
 
     'homework',
     'accounts',
@@ -87,9 +91,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'studypunch.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -147,6 +148,20 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',),
+}
+
+# CHANNELS REDIS
+CHANNEL_LAYERS = {
+    'default': {
+        ### Method 2: Via local Redis
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #      "hosts": [('127.0.0.1', 6379)],
+        # },
+
+        ### Method 3: Via In-memory channel layer
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    },
 }
 
 
