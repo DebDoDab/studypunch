@@ -2,11 +2,6 @@
 
 Studypunch is a project for students to help them solve their deadlines.
 
-## Usage
-
-Right now you can access it [here](http://api.vadi.tel)
-You can create your 
-
 ## Installation
 * Download it
     ```
